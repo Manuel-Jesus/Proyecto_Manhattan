@@ -19,16 +19,5 @@ conexion.ehlo()
 conexion.login(usuario,password)
 conexion.sendmail(correo_origen, correo_destino, mensaje)#esta linea es la que envia el correo, si se pusuera mas veces se enviaria dichas veces el correo
 
-
-
-
-
-#client = gdata.apps.emailsettings.client.EmailSettingsClient(domain='manueljesusbeginesgonzalez@gmail.com')
-#client.ClientLogin(email='manueljesusbeginesgonzalez@gmail', password='adminPassword', source='your-apps')
-#client.UpdatePop(username='liz', enable=True, enable_for='MAIL_FROM_NOW_ON', action='KEEP')
-
-
-
-
 conexion.quit() #esta linea evidentemente cierra la conexion
 
