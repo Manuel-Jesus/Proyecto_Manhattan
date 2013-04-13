@@ -1,13 +1,7 @@
-import gdata.apps.emailsettings.client
-from getpass import getpass
+import requests
 
+peticion = requests.get("https://apps-apis.google.com/a/feeds/emailsettings/2.0/gmail.com/testmanhattan/label")
 
-dominio = raw_input('Introduce el dominio que quieres: ')
-correo = raw_input('Introduce el Nombre de Usuario(usuario@dominion.com): ')
-usuario = raw_input('Introduce el nombre de usuario: ')
-passwd = getpass('Introdice la clave: ')
-nombrelabel = raw_input('Introduce el nombre del filtro a crear: ')
+texto = peticion.text
 
-client = gdata.apps.emailsettings.client.EmailSettingsClient(domain= dominio)
-client.ClientLogin(email = usuario , password = passwd , source = 'Proyecto Manhattan')
-client.CreateLabel (username = usuario , name = nombrelabel)
+print (texto)
