@@ -2,15 +2,18 @@ import requests
 from getpass import getpass
 
 
-usuario=raw_input('Introduce tu usuario(nombre@titaniumsystem.mybiz.com')
+usuario=raw_input('Introduce tu usuario(nombre@titaniumsystem.mybiz.com): ')
 passwd=getpass('Introdice tu clave: ')
 
 #creamos la valiable con los datos que vamos a pasar posteriormente
 datos={'Email':usuario, 'Passwd':passwd}
 #enviamos los datos para solicitar el token
- r=requests.post("https://www.google.com/accounts/Clientlogin", datos)
- 
- print r.text
+r=requests.post("https://www.google.com/accounts/Clientlogin", data=datos)
+# En r esta el token
+
+
+#el .text serviria para mostrarlo como texto
+print r.text
 
 
 
