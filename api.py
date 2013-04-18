@@ -13,13 +13,13 @@ r=requests.post("https://www.google.com/accounts/Clientlogin", data=datos)
 
 
 #el .text serviria para mostrarlo como texto
-print r.text
+#print r.text
 
 
 
 
-#peticion = requests.get("https://apps-apis.google.com/a/feeds/emailsettings/2.0/gmail.com/testmanhattan/label")
+datos={'Content-type':'application/atom+xml', 'Authoritation':r.text}
 
-#texto = peticion.text
+t=requests.get("https://apps-apis.google.com/a/feeds/emailsettings/2.0/titaniumsystem.mygbiz.com/manueljesus/label",data=datos);
 
-#print (texto)
+print t.text
