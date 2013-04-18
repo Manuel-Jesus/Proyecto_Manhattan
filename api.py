@@ -2,7 +2,7 @@ import requests
 from getpass import getpass
 
 
-usuario=raw_input('Introduce tu usuario(nombre@titaniumsystem.mybiz.com): ')
+usuario=raw_input('Introduce tu usuario(nombre@gmail.com): ')
 passwd=getpass('Introdice tu clave: ')
 
 #creamos la valiable con los datos que vamos a pasar posteriormente
