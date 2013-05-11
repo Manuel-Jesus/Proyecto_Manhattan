@@ -12,12 +12,13 @@ r=requests.post('https://www.google.com/accounts/Clientlogin', data=datos)
 
 indice=(r.text).rfind("Auth=")
 #print indice
-token=(r.text)[indice+5:]
+token=(r.text)[indice+5:len(r.text)-1]
 #print token
 
 #la autentificacion va en las cabeceras
-archivos={'':(open('file.xml','rb'))}
+#archivos={'':(open('file.xml','rb'))}#para el futuro, posible necesidad de archivo.
 headers = {'content-type': 'application/atom+xml','Authorization':'GoogleLogin auth='+token}
-pet=requests.post('https://apps-apis.google.com/a/feeds/emailsettings/2.0/titaniumsystem.mygbiz.com/manueljesus/label',headers=headers,data=archivos)
+pet=requests.get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/titaniumsystem.mygbiz.com/manueljesus/label',headers=headers)
 
 print pet.text#comentar si solo se quiere el token
+
