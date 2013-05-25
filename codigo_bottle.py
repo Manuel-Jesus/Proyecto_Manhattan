@@ -2,27 +2,27 @@ import smtplib
 #import gdata.apps.emailsettings.client
 from getpass import getpass
 import requests
-from lxml import etree#ERROR CON LA LIBRERIA
-
+from lxml import etree
+from bottle import Bottle, run, template,post,request
 
 #'manueljesus@mark6.mygbiz.com' 
 
 
 correo_origen = 'manueljesus@mark6.mygbiz.com'  #raw_input('Correo electronico de origen: ')
 passwd=getpass('PASSWORD: ')
-correo_destino = raw_input('Correo electronico de destino: ')
-mensaje = raw_input('Introduce el correo que desee enviar: ')
+#correo_destino = raw_input('Correo electronico de destino: ')
+#mensaje = raw_input('Introduce el correo que desee enviar: ')
 
 
 
-# conexion a gmail
-conexion = smtplib.SMTP('smtp.gmail.com:587') # este es el servidor de correos gmail
-#las sisguientes lineas forman parte del protocolo smtp
-conexion.ehlo()
-conexion.starttls()
-conexion.ehlo()
-conexion.login(correo_origen,passwd)
-conexion.sendmail(correo_origen, correo_destino, mensaje)#esta linea es la que envia el correo, si se pusuera mas veces se enviaria dichas veces el correo
+## conexion a gmail
+#conexion = smtplib.SMTP('smtp.gmail.com:587') # este es el servidor de correos gmail
+##las sisguientes lineas forman parte del protocolo smtp
+#conexion.ehlo()
+#conexion.starttls()
+#conexion.ehlo()
+#conexion.login(correo_origen,passwd)
+#conexion.sendmail(correo_origen, correo_destino, mensaje)#esta linea es la que envia el correo, si se pusuera mas veces se enviaria dichas veces el correo
 
 #conexion.quit() #esta linea evidentemente cierra la conexion
 
@@ -60,7 +60,7 @@ xml = etree.fromstring(kd.encode('utf-8'))
 
 
 lista=xml.xpath("//text()")
-#print lista
+print lista
 a= len(lista)
 
 
@@ -68,13 +68,10 @@ contadorLista=0
 labels=list()
 for i in range(3, a-1):
   if i%2!=0:
-    indice=lista[i].rfind("/label/")
+	  indice=lista[i].rfind("/label/")
 	  labels.append(lista[i][indice+7:len(lista[i])])
-#print labels
+print labels
 
-print labels[0]
-print labels[1]
-print labels[2]
 
 
 #pet2=requests.get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/mark6.mygbiz.com/manueljesus/forwarding',headers=headers)
@@ -88,3 +85,24 @@ print labels[2]
 #pet4=requests.get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/mark6.mygbiz.com/manueljesus/signature',headers=headers)
 
 #print pet4.text
+
+
+
+#resp_xml = etree.fromstring(pet.text)
+
+
+bottle = Bottle()
+
+@bottle.route('/login')
+def home_page():
+    return template('index')
+
+
+
+
+@bottle.post('/salida')
+def salida():
+    a='soy ironman'
+    return template('salidaTest',CorreoOrigen=request.forms.get('name'),CorreoDestino='ACTUALMENTE COMENTADO EN EL CODIGO',contenido='Actualmente comentado en el codigo. opcion en pruebas' )
+
+run(bottle, host='localhost', port=8080)
