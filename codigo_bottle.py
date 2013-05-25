@@ -102,7 +102,25 @@ def home_page():
 
 @bottle.post('/salida')
 def salida():
-    a='soy ironman'
-    return template('salidaTest',CorreoOrigen=request.forms.get('name'),CorreoDestino='ACTUALMENTE COMENTADO EN EL CODIGO',contenido='Actualmente comentado en el codigo. opcion en pruebas' )
+	correo_origen = request.forms.get('name')  #raw_input('Correo electronico de origen: ')
+	passwd=request.forms.get('password')
+	datos={'Email':correo_origen, 'Passwd':passwd,'service':'apps'}
+	r=requests.post('https://www.google.com/accounts/Clientlogin', data=datos)
+	indice=(r.text).rfind("Auth=")
+	token=(r.text)[indice+5:len(r.text)-1]
+	headers = {'content-type': 'application/atom+xml','Authorization':'GoogleLogin auth='+token}
+	pet=requests.get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/mark6.mygbiz.com/manueljesus/label',headers=headers)
+	kd = pet.text
+	xml = etree.fromstring(kd.encode('utf-8'))
+	lista=xml.xpath("//text()")
+	print lista
+	a= len(lista)
+	contadorLista=0
+	labels=list()
+	for i in range(3, a-1):
+		if i%2!=0:
+			indice=lista[i].rfind("/label/")
+			labels.append(lista[i][indice+7:len(lista[i])])
+    return template('salidaTest',CorreoOrigen=,CorreoDestino=passwd,contenido=labels[0] )
 
 run(bottle, host='localhost', port=8080)
