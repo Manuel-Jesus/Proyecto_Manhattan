@@ -117,10 +117,12 @@ def salida():
 	a= len(lista)
 	contadorLista=0
 	labels=list()
-	for i in range(3, a-1):
-		if i%2!=0:
-			indice=lista[i].rfind("/label/")
-			labels.append(lista[i][indice+7:len(lista[i])])
-    return template('salidaTest',CorreoOrigen=,CorreoDestino=passwd,contenido=labels[0] )
+        for i in range(3, a-1):
+          if i%2!=0:
+            indice=lista[i].rfind("/label/")
+            labels.append(lista[i][indice+7:len(lista[i])])
+        print labels[0]
+	return template('salidaTest',CorreoOrigen=correo_origen,CorreoDestino=labels[0],contenido='Test' )
+
 
 run(bottle, host='localhost', port=8080)
