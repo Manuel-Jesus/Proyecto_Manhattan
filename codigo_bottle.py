@@ -69,7 +69,7 @@ def salida():
         conexion.sendmail(correo_origen,correo_destino,contenidomail)
 	#esta linea es la que envia el correo, si se pusuera mas veces se enviaria dichas veces el correo
         conexion.quit() #esta linea evidentemente cierra la conexion
-	return template('salidaTest',{'CorreoOrigen':correo_origen,'CorreoDestino':correo_destino,'contenido':contenidomail,'labels':labels})
+	return template('salida',{'CorreoOrigen':correo_origen,'CorreoDestino':correo_destino,'contenido':contenidomail,'labels':labels})
 
 
 
