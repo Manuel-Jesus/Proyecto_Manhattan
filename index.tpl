@@ -10,12 +10,13 @@
 		<form method="POST" action="/salida">
 				<b><h5>Direccion del correo de salida</h5></b><br>
 				<input name="origen"     type="text" /><br>
+				<b><h5>Password</h5></b><br>
+				<input name="password" type="password" /><br>
 				<b><h5>Correo electronico de destino</h5></b><br>
 				<input name="destino"     type="text" /><br>
 				<b><h5>Redactar correo:</h5></b><br>
-				<textarea name="texto"></textarea><br>
-				<b><h5>Password</h5></b><br>
-				<input name="password" type="password" /><br>
+				<textarea name="texto" rows=20 cols=100></textarea><br>
+
 				<input type="submit" />
 
 
