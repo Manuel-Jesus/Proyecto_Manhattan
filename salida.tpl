@@ -1,18 +1,18 @@
 <html>
-  <head>
+	<head>
 		<title>Login</title>
 	</head>
 	<body>
+		<link rel="stylesheet" type="text/css" href="codigocss2.css" />
   
-			<b>Dirección del correo de salida</b><br>	
-			<b>{{CorreoOrigen}}</b><br><br>
+			<b><h4>Dirección del correo de salida</h4></b>
+			<b><h5>{{CorreoOrigen}}</h5></b><br><br>
 			<br>
-			<b>Direccion de correo destino</b><br>
-			<b>{{CorreoDestino}}</b><br><br>
+			<b><h4>Direccion de correo destino</h4></b>
+			<b><h5>{{CorreoDestino}}</h5></b><br><br>
 
-			<b>Correo enviado</b><br>
-			<b>{{contenido}}</b><br><br>
-		
+			<b><h4>Correo enviado</h4></b>
+			<b><h5>{{contenido}}</h5></b><br><br>
 			<ul>
 			%for label in labels:
 			<li>{{label}}</li>
