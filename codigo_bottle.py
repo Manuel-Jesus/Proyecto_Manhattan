@@ -1,25 +1,25 @@
 import smtplib
 import requests
 from lxml import etree
-from bottle import Bottle, run, template,post,request,static_file
+from bottle import run, route, template,post,request,static_file, debug
 
 
 
 
-bottle = Bottle()#La aplicacion
+#bottle = Bottle()#La aplicacion
 
-@bottle.route('/style/filepath:path')
-def server_static(filepath):
-    return static_file(filepath, root='./style')
+@route('/style/:filename#.*#')
+def send_static(filename):
+    return static_file(filename, root='./style')
 
-@bottle.route('/')#pagina de inicio
+@route('/')#pagina de inicio
 def home_page():
     return template('index')#simplemente nos devuelve la plantilla de la pagina de inicio
 
 
 
 
-@bottle.post('/salida')
+@post('/salida')
 def salida():
 	correo_origen = request.forms.get('origen')  #raw_input('Correo electronico de origen: ')
 	passwd=request.forms.get('password')
@@ -72,5 +72,5 @@ def salida():
 	return template('salida',{'CorreoOrigen':correo_origen,'CorreoDestino':correo_destino,'contenido':contenidomail,'labels':labels})
 
 
-
-run(bottle, host='localhost', port=8080)
+debug(True)
+run(host='localhost', port=8080)
