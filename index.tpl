@@ -21,6 +21,7 @@
 
 
               </form>
+              <li id="nav_estrenos"><a href="{{enlaceOauth}}">Pulsa aquí si no quieres enviar un correo y solo quieres ver tus labels usando Oauth</a></li>
 		
 		<!--<img SRC=""> </img>-->
 	</body>
