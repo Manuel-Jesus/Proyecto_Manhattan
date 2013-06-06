@@ -9,16 +9,16 @@
 		
   
 			<b><h4>Dirección del correo de salida</h4></b>
-			<b><h5>{{CorreoOrigen}}</h5></b><br><br>
+			<b><h5><div style="border:3px solid white;padding:5px;text-align:left;width:400px;">{{CorreoOrigen}}</div></h5></b><br><br>
 			<br>
 			<b><h4>Direccion de correo destino</h4></b>
-			<b><h5>{{CorreoDestino}}</h5></b><br><br>
+			<b><h5><div style="border:3px solid white;padding:5px;text-align:left;width:400px;">{{CorreoDestino}}</div></h5></b><br><br>
 
 			<b><h4>Correo enviado</h4></b>
 			<b><h5>{{contenido}}</h5></b><br><br>
 			<ul>
 			%for label in labels:
-			<li>{{label}}</li>
+			<li><div style="border:2px solid black;padding:5px;text-align:left;width:400px;">{{label}}</div></li>
 			%end
 			</ul>
 
