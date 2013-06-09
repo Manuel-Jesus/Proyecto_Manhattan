@@ -13,7 +13,8 @@ ACCESS_TOKEN_URL = "https://www.google.com/accounts/OAuthGetAccessToken"
 CONSUMER_KEY = "750829952488.apps.googleusercontent.com"
 CONSUMER_SECRET = "9PZBykCAfYiM1bNGZlICBwh3"
 # Definimos los parametros SCOPE y CALLBACK_URI
-SCOPE = "https://apps-apis.google.com/a/feeds/emailsettings/2.0/ https://www.googleapis.com/auth/userinfo.email"
+SCOPE = "https://apps-apis.google.com/a/feeds/emailsettings/2.0/ https://www.googleapis.com/auth/userinfo.email"#scope necesario y ES SEPARADO POR ESPACIOS
+#si eliminamos el segundo scope no llegamos a obtener la direccion de correo del cliente, la cual es necesaria para realizar las peticiones de labels
 CALLBACK_URI = "http://localhost:8080/oauth2callback"
 
 TOKENS = {}
@@ -69,7 +70,7 @@ def home_page():
 
 @post('/salida')
 def salida():
-  correo_origen = request.forms.get('origen')  #raw_input('Correo electronico de origen: ')
+	correo_origen = request.forms.get('origen')  #raw_input('Correo electronico de origen: ')
 	passwd=request.forms.get('password')
         correo_destino=request.forms.get('destino')
         contenidomail=request.forms.get('texto')
@@ -124,6 +125,7 @@ def salida():
 @get('/oauth2callback')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
+    print TOKENS["verifier"]
     get_access_token(TOKENS)
     token=   TOKENS["access_token"]
     print token
@@ -147,7 +149,10 @@ def get_verifier():
             labels.append(lista[i][indice+7:len(lista[i])])
 	#en el for que es para que solo se muestre por pantalla la label y no todo lo que gmail nos manda
     print labels
-    return lista
+#    TOKENS.extend(labels)
+    print TOKENS
+    return template('salida',{'CorreoOrigen':'VERSION EN DESAROLLO','CorreoDestino':'Con oauth no se puede enviar un correo','contenido':'Esta es una version en desarollo. En lugar de las labels imprimiremos en primer lugar todo lo recibido por google, y luego la respuesta al hacer la peticion de labels','labels':lista})
+# return lista
 
 debug(True)
 run(host='localhost', port=8080)
