@@ -1,0 +1,13 @@
+
+@charset "utf-8";
+
+body{background-color:blue;
+background-image: url("fondo.jpg");
+background-repeat: no-repeat;
+background-attachment: scroll;}
+
+h5{
+font-family: arial;
+color:white}
+
+
