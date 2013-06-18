@@ -130,11 +130,8 @@ def salida():
 @get('/oauth2callback')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
-    mail=request.query.mail
-    print mail
     get_access_token(TOKENS)
     token=   TOKENS["access_token"]
-    print token
     token=token[:len(token)]
     print token
     headers = {'content-type': 'application/atom+xml','Authorization':'GoogleLogin auth='+token}
