@@ -2,17 +2,23 @@
 
 body{background-color:blue;
 background-image: url("fondo.jpg");
-background-repeat: no-repeat;
-background-attachment: scroll;}
+background-repeat: repeat;
+background-attachment: scroll;
 
-h5{
-font-family: arial;
-color:white;
-text-decoration: }
+}
 
 
 h4{
 font-family: arial;
 color:white;
-text-decoration: underline;}
+text-decoration: underline;
+}
+
+h5{
+border:3px solid white;
+padding:5px;
+text-align:left;
+width:400px;
+color: black;
+}
 

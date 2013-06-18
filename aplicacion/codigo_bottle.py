@@ -115,11 +115,9 @@ def salida():
 
 	token=(r.text)[indice+5:len(r.text)-1]
         labels=get_labels(token,correo_origen)
-	#en el for que es para que solo se muestre por pantalla la label y no todo lo que gmail nos manda
-
 	# conexion a gmail
         conexion=smtplib.SMTP('smtp.gmail.com:587')
-		#Las siguientes lineas forman parte del protocolo smtp
+	#Las siguientes lineas forman parte del protocolo smtp
         conexion.ehlo()
         conexion.starttls()
         conexion.login(correo_origen,passwd)
@@ -133,32 +131,19 @@ def salida():
 @get('/oauth2callback')
 def get_verifier():
     TOKENS["verifier"] = request.query.oauth_verifier
-    print TOKENS["verifier"]
+    mail=request.query.mail
+    print mail
     get_access_token(TOKENS)
     token=   TOKENS["access_token"]
     print token
     token=token[:len(token)]
     print token
     headers = {'content-type': 'application/atom+xml','Authorization':'GoogleLogin auth='+token}
-    pet=requests.get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/'+'mark6.mygbiz.com'+'/'+'manueljesus'+'/label',headers=headers)
-    #en la linea anterior hemos utilizado el dominio y el correo
-    kd = pet.text
-    #nos devuelve la petion y dentro de ella se podria ver los datos que queremos imprimir
-    xml = etree.fromstring(kd.encode('utf-8'))
-    #el etree es lo que recore la respuesta que nos da la api
-    lista=xml.xpath("//text()")
-    print lista
-    a= len(lista)
-    contadorLista=0
-    labels=list()
-    for i in range(3, a-1):
-          if i%2!=0:
-            indice=lista[i].rfind("/label/")
-            labels.append(lista[i][indice+7:len(lista[i])])
-	#en el for que es para que solo se muestre por pantalla la label y no todo lo que gmail nos manda
-    print labels
-#    TOKENS.extend(labels)
-    print TOKENS
+    correo=requests.get('https://www.googleapis.com/oauth2/v1/userinfo',headers=headers)
+    correo=correo.text
+    print correo
+    #codigo aqui para sacar el correo. Suponemos que acepta el token como valido y no necesita ser procesado.
+    lista=get_labels(token,correo)
     return template('salida',{'CorreoOrigen':'VERSION EN DESAROLLO','CorreoDestino':'Con oauth no se puede enviar un correo','contenido':'Esta es una version en desarollo. En lugar de las labels imprimiremos en primer lugar todo lo recibido por google, y luego la respuesta al hacer la peticion de labels','labels':lista})
 # return lista
 

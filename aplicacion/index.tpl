@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="style/codigocss.css" />
 	</head>
 	<body>
-
+		<img style="float:right;" src="/style/logo.png" alt="logotipo" />
 		<form method="POST" action="/salida">
 				<b><h5>Direccion del correo de salida</h5></b><br>
 				<input name="origen"     type="text" /><br>

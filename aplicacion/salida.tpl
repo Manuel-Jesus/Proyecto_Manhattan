@@ -7,18 +7,20 @@
 	</head>
 	<body>
 		
-  
+			<img style="float:right;" src="/style/logo.png" alt="logotipo" />
 			<b><h4>Dirección del correo de salida</h4></b>
-			<b><h5><div style="border:3px solid white;padding:5px;text-align:left;width:400px;">{{CorreoOrigen}}</div></h5></b><br><br>
+			<b><h5>{{CorreoOrigen}}</h5></b><br><br>
 			<br>
 			<b><h4>Direccion de correo destino</h4></b>
-			<b><h5><div style="border:3px solid white;padding:5px;text-align:left;width:400px;">{{CorreoDestino}}</div></h5></b><br><br>
+			<b><h5>{{CorreoDestino}}</h5></b><br><br>
 
 			<b><h4>Correo enviado</h4></b>
 			<b><h5>{{contenido}}</h5></b><br><br>
+			<br><br><br>
+			<b><h4>Labels</h4></b>
 			<ul>
 			%for label in labels:
-			<li><div style="border:2px solid black;padding:5px;text-align:left;width:400px;">{{label}}</div></li>
+			<li><h5>{{label}}</h5></li>
 			%end
 			</ul>
 
