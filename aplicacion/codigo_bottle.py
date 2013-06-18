@@ -87,7 +87,6 @@ def get_labels(token,correo):
     xml = etree.fromstring(kd.encode('utf-8'))
     #el etree es lo que recore la respuesta que nos da la api
     lista=xml.xpath("//text()")
-    print lista
     a= len(lista)
     print lista
     contadorLista=0
